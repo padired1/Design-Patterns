@@ -1,6 +1,5 @@
+package ptbs;
 public interface ProductMenu {
-
-	private Person person;
 
 	public void showMenu();
 
