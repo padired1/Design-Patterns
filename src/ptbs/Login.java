@@ -5,21 +5,20 @@ import java.util.*;
 public class Login {
 	private Scanner sc = new Scanner(System.in); 
 	private String username;
-	private HashMap<String, String> buyerCreds;
-	private HashMap<String, String> sellerCreds;
+	private HashMap<String, String> buyerCredentials;
+	private HashMap<String, String> sellerCredentials;
 	
     public void login() {
         loadUserCredentials();
         chooseUserType();
-        enterCredential(Facade.userType);
+        enterCredentials(Facade.userType);
     }
     
     private HashMap<String, String> getCredentialsFromFile(String filePath){
     	try {
-        	File file = new File(filePath);    
-            FileReader fr = new FileReader(file);
+        	File f = new File(filePath);    
+            FileReader fr = new FileReader(f);
             BufferedReader br = new BufferedReader(fr);
-            StringBuffer sb = new StringBuffer();
             String line;
             HashMap<String, String> credentials = new HashMap<String, String>();
             while((line=br.readLine())!=null)  
@@ -28,9 +27,7 @@ public class Login {
             	credentials.put(creds[0], creds[1]);
        
             }  
-            fr.close();  
-            System.out.println("File Content: ");  
-            System.out.println(sb.toString()); 
+            fr.close();     
             return credentials;
 
        } 	catch(IOException e)
@@ -41,18 +38,18 @@ public class Login {
     }
     
     private void loadUserCredentials(){
-    	HashMap<String, String> buyerCreds = getCredentialsFromFile("C:/Users/prath/OneDrive/Desktop/PTBS/SER515DesignPatterns/src/Database/BuyerInfo.txt/");
-    	this.buyerCreds = buyerCreds;
+    	HashMap<String, String> buyerCredentials = getCredentialsFromFile("C:/Users/prath/OneDrive/Desktop/Database/BuyerInfo.txt/");
+    	this.buyerCredentials = buyerCredentials;
     	
-    	HashMap<String, String> sellerCreds = getCredentialsFromFile("C:/Users/prath/OneDrive/Desktop/PTBS/SER515DesignPatterns/src/Database/SellerInfo.txt/");
-    	this.sellerCreds = sellerCreds;
+    	HashMap<String, String> sellerCredentials = getCredentialsFromFile("C:/Users/prath/OneDrive/Desktop/Database/SellerInfo.txt/");
+    	this.sellerCredentials = sellerCredentials;
     }
 
     private boolean validateUserType(int userType) {
-		if(userType==Facade.USER_BUYER || userType==Facade.USER_SELLER) {
+		if(userType==Facade.BUYER || userType==Facade.SELLER) {
 			return true;
 		}else {
-			System.out.println("Invalid Input! Please type your input again");
+			System.out.println("Invalid Input! Please give your input again");
 			return false;
 		}
 	}
@@ -62,12 +59,12 @@ public class Login {
 		
 		switch(usertype) {
 		
-		case Facade.USER_BUYER:
-			System.out.println("You are entering as a Buyer");
+		case Facade.BUYER:
+			System.out.println("Logged in  as a Buyer");
 			break;
 		    
-		case Facade.USER_SELLER:
-			System.out.println("You are entering as an Seller");	
+		case Facade.SELLER:
+			System.out.println("Logged in as a Seller");	
 			break;
 			
 		default: 
@@ -75,18 +72,19 @@ public class Login {
 			
 		}
 		
-		enterCredential(usertype);
+		enterCredentials(usertype);
 		
 	}
 
-    private void setUserType(int usertype) {
-    	Facade.userType = usertype;
+    private void setUserType(int user_type) {
+    	Facade.userType = user_type;
 	}
 
     private void chooseUserType() {
 		int usertype;
-		System.out.println("Welcome to PTBS System");
-		System.out.println("You are? \n0) Buyer\n1) Seller");
+		System.out.println("Welcome to Product Trading and Bidding System!!!!!");
+		System.out.println("0)Buyer\n1)Seller");
+		System.out.println("Please select an option");
 		
 		do {
 			usertype = sc.nextInt();
@@ -98,15 +96,15 @@ public class Login {
 
 
     	
-	private void enterCredential(int userType) {
+	private void enterCredentials(int userType) {
 		String password;
 		
 		sc.nextLine();
 		
 		do {
-			System.out.println("Enter your username here: ");
+			System.out.println("Enter UserName: ");
 			username = sc.next();
-			System.out.println("Enter your password here: ");
+			System.out.println("Enter Password: ");
 			password = sc.next();
 			
 		}while(!validateCredentials(username, password, userType));
@@ -114,13 +112,14 @@ public class Login {
 	
 	private boolean validateBuyerCredentials(String username, String password) {
 	
-		if(!this.buyerCreds.containsKey(username)) {
-    		
+		if(!this.buyerCredentials.containsKey(username)) {
+			System.out.println("Invalid Credentials, Login Failed!!");
     		return false;
     	
     	}
     	
-    	if(this.buyerCreds.get(username).equals(password)) {
+    	if(this.buyerCredentials.get(username).equals(password)) {
+    		System.out.println("Login Succcesful");
     		return true;
     	}
     	return false;
@@ -128,13 +127,14 @@ public class Login {
 	
 	private boolean validateSellerCredentials(String username, String password) {
 		
-		if(!this.sellerCreds.containsKey(username)) {
-    		
+		if(!this.sellerCredentials.containsKey(username)) {
+			System.out.println("Invalid Credentials, Login Failed!!");
     		return false;
     	
     	}
     	
-    	if(this.sellerCreds.get(username).equals(password)) {
+    	if(this.sellerCredentials.get(username).equals(password)) {
+    		System.out.println("Login Succcesful");
     		return true;
     	}
     	return false;
@@ -142,7 +142,7 @@ public class Login {
 
 
     private boolean validateCredentials(String username, String password, int userType) {
-    	System.out.println(userType);
+    	
     	if(userType==0) 
     	{
     		return validateBuyerCredentials(username, password);

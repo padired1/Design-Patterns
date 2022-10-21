@@ -1,31 +1,20 @@
 package ptbs;
-import java.util.List;
 public class Reminder {
 private NodeVisitor nodeVisitor;
 	
 	public Reminder(){
 		nodeVisitor = new ReminderVisitor();
 	}
-	// visitor design pattern
+	// visitor Design Pattern
 	public void visitFacade(Facade facade) {
 		nodeVisitor.visitFacade(facade);
 	}
-	// visitor design pattern
+	// visitor Design Pattern
 	public void visitProduct(Product product) {
 		product.accept(nodeVisitor);
 	}
-	// visitor design pattern 
+	// visitor Design Pattern 
 	public void visitTrading(Trading trading) {
 		trading.accept(nodeVisitor);
 	}
-	
-	public void remind(List<Trading> tradings) {
-		
-		System.out.println("Pending tradings");
-		for(Trading trading : tradings) {
-			trading.accept(nodeVisitor);
-		}
-		
-	}
-
 }

@@ -1,24 +1,24 @@
 package ptbs;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileReader;
+import java.io.IOException;
 
 
 public class TradingController {
-	public void viewTrading(Trading trading, int usertype) {
+	public void viewTrading(Trading trading, int user_type) {
 		
-		trading.showTradingMenu(usertype);
+		trading.showTradingMenu(user_type);
 	}
 		
-	public static Trading getDummyTrading() {
+	public static Trading getTrading() {
 		
 		try {
-    		String filePath= "C:/Users/prath/OneDrive/Desktop/PTBS/SER515DesignPatterns/src/Database/UserProduct.txt";
-        	File file = new File(filePath);    
-            FileReader fr = new FileReader(file);
+    		String filePath= "C:/Users/prath/OneDrive/Desktop/Database/UserProduct.txt";
+        	File f = new File(filePath);    
+            FileReader fr = new FileReader(f);
             BufferedReader br = new BufferedReader(fr);
             StringBuffer sb = new StringBuffer();
             String line;
@@ -32,8 +32,8 @@ public class TradingController {
             	String[] offeringDetails =tradingDetails[1].split(",");
             	
             	for (String s:offeringDetails) {
-            		Offering sol= new Offering(s);
-            		offList.add(sol);
+            		Offering offerings= new Offering(s);
+            		offList.add(offerings);
             	}
             	a.setOffering(offList);
             	

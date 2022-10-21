@@ -3,14 +3,14 @@ package ptbs;
 public class PersonFactory {
 private static Person person;
 	
-	public static Person getPerson(int UserType)
+	public static Person getPerson(int User_Type)
 	 {
 		
-		if(UserType== Facade.USER_BUYER) 
+		if(User_Type== Facade.BUYER) 
 			
 		{
 			person = new Buyer();
-		}else if(UserType == Facade.USER_SELLER) {
+		}else if(User_Type == Facade.SELLER) {
 			person = new Seller();
 		}
 		

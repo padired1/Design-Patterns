@@ -3,22 +3,20 @@ import java.util.List;
 public class Facade {
 
 	 public static int userType;
-	 public static final int USER_BUYER = 0;
-	 public static final int USER_SELLER = 1;
-	
-	 public static int nProductType;
+	 public static final int BUYER = 0;
+	 public static final int SELLER = 1;
+	 @SuppressWarnings("unused")
+	private String theSelectedProduct;
+	 public  static int nProductType;
 	 public static final int MEAT_PRODUCT_TYPE = 0;
 	 public static final int PRODUCE_PRODUCT_TYPE = 1;
-	
-	
 	 public static List<Product> theProductList;
 	
 	 public Person thePerson;
 		
 	 private Login login;										
-	 private ProductController productController;                  
-	 private TradingController tradingController;
-	private String theSelectedProduct;			
+	 private ProductController theprodController;                  
+	 private TradingController thetradingController;			
 	 public Facade() {
 		initResources();
 	}
@@ -32,15 +30,32 @@ public class Facade {
 	 public void addTrading(Trading trading, int usertype) 
 	 {
 		
-	 	tradingController.viewTrading(trading, usertype);
+	 	thetradingController.viewTrading(trading, usertype);
 	 }
 	
 	//facade design pattern 
 	 public void viewTrading(Trading trading, int usertype) {
 
-	 	tradingController.viewTrading(trading, usertype);
+	 	thetradingController.viewTrading(trading, usertype);
 	 }
-	
+	 public void decideBidding()
+	 {
+		 
+	 }
+	 public void discussBidding() 
+	 {
+		 
+	 }
+	 public void submitBidding()
+	 {
+		 
+	 }
+	 public void remind()
+	 {
+		 @SuppressWarnings("unused")
+		Reminder remind= new Reminder();
+	 }
+	 
 	 public void createUser(int usertype) {
 	
 	 	thePerson = PersonFactory.getPerson(usertype);
@@ -48,24 +63,27 @@ public class Facade {
 	
 	
 	 public void createProductList() {
-	 	productController.createAllProducts();
+	 	theprodController.createAllProducts();
 	 }
 	
 	 public void selectProduct() {
-	
-	 	theSelectedProduct = productController.selectProduct(this);
+		 	theSelectedProduct = theprodController.selectProduct(this);
 	 }
 	
 	 public void productOperation() {
 		 System.out.println(nProductType);	
 	 	thePerson.createProductMenu(nProductType);
 	 }
+	 public void attachProductToUser()
+	 {
+		 
+	 }
 	
 	private void initResources() {
 		
 		 login = new Login();
-		 productController = new ProductController();
-		 tradingController = new TradingController();
+		 theprodController = new ProductController();
+		 thetradingController = new TradingController();
 		 
 	}
 

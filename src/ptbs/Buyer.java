@@ -4,15 +4,15 @@ public class Buyer extends Person {
 	@Override
 	public void showMenu() 
 	{
-		System.out.println("\n----------------------\nProductMenu for Buyer(Type: )"+getType(productType)+")");	
+		System.out.println("\nProductMenu for Buyer\n---------------------");	
 		theProductMenu.showMenu();
 		chooseOption();
-		System.out.println("----------------------");
+		
 	}
 
 	@Override
-	public void createProductMenu(int productTypeArg) {
-		theProductMenu = ProductMenuFactory.getProductMenu(productTypeArg);
+	public void createProductMenu(int prodType) {
+		theProductMenu = ProductMenuFactory.getProductMenu(prodType);
 		
 	}
 

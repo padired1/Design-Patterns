@@ -2,25 +2,30 @@ package ptbs;
 import java.util.List;
 public class ReminderVisitor extends NodeVisitor {
 
+	@SuppressWarnings("unused")
 	private Reminder m_Reminder;
 
-private ListIterator iterator; 
-	
+    private ListIterator itr; 
+    public ReminderVisitor() {}
+	public ReminderVisitor(Reminder remind)
+	{
+		this.m_Reminder=remind;
+	}
 	@Override
 	public void visitFacade(Facade facade) {
-		//visitor design pattern
-		List<Product> products = Facade.theProductList;
-		iterator = new ProductIterator(products);
+		//visitor DP
+		List<Product> product = Facade.theProductList;
+		itr = new ProductIterator(product);
 		int index = 0;
-		while(iterator.hasNext()) {
-			System.out.println(++index+")) "+iterator.next());
+		while(itr.hasNext()) {
+			System.out.println(++index +")"+itr.next());
 		}
 
 	}
 
 	@Override
 	public void visitProduct(Product product) {
-		//visitor design pattern
+		//visitor DP
 		System.out.println("All trading in "+product.getName()+"\n-------------------------");
 		List<Trading> trading =  product.getTradings();
 		for(int i=0;i<trading.size();i++) {
@@ -32,6 +37,6 @@ private ListIterator iterator;
 	@Override
 	public void visitTrading(Trading trading) {
 		
-		System.out.println("Exp date for "+trading.name+" is "+trading.expdate);
+		System.out.println("Expiry date for "+trading.name+" is "+trading.exdt);
 	}
 }

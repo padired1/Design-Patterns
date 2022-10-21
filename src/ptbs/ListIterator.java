@@ -6,8 +6,8 @@ public abstract class ListIterator implements Iterator<Object>
 	
 	public abstract Object next();
 	
-	public abstract void Remove();
+	public abstract void remove();
 	
-	public abstract void MoveToHead();
+	public abstract void moveToHead();
 
 }

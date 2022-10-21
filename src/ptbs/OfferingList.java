@@ -1,4 +1,5 @@
 package ptbs;
-public class OfferingList {
+
+public class OfferingList 	{
 
 }

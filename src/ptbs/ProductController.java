@@ -15,7 +15,7 @@ public class ProductController {
 	
 	public void createAllProducts() {
 		
-		Facade.theProductList = getDummyProductList();
+		Facade.theProductList = getProductList();
 		
 	}
 	
@@ -27,11 +27,11 @@ public class ProductController {
 	public String selectProduct(Facade facade) {
 		System.out.println("Select Product");
 		showAllProducts(facade);
-		int selection;
+		int s;
 		do {
-			 selection = sc.nextInt();
-		}while(!checkinputValidity(1, 3, selection));
-		String selectedProduct = productList.get(selection-1).name;
+			 s = sc.nextInt();
+		}while(!checkinputValidity(1, 5, s ));
+		String selectedProduct = productList.get(s-1).name;
 		
 		System.out.println("Select Type");
 		showProductType();
@@ -70,7 +70,7 @@ public class ProductController {
 	}
 	
 	private void showProductType() {
-		System.out.println("0) MEAT\n1) PRODUCE");
+		System.out.println("0)MEAT\n1)PRODUCE");
 	}
 	
 	private boolean checkinputValidity(int low,int high, int input) {
@@ -82,25 +82,23 @@ public class ProductController {
 		}
 	}
 	
-	private List<Product> getDummyProductList() {
+	private List<Product> getProductList() {
 		
 		productList = new ArrayList<Product>();
 		
     	try {
-    		String filePath= "C:/Users/prath/OneDrive/Desktop/PTBS/SER515DesignPatterns/src/Database/ProductInfo.txt";
-        	File file = new File(filePath);    
-            FileReader fr = new FileReader(file);
+    		String filePath= "C:/Users/prath/OneDrive/Desktop/Database/ProductInfo.txt";
+        	File f = new File(filePath);    
+            FileReader fr = new FileReader(f);
             BufferedReader br = new BufferedReader(fr);
             StringBuffer sb = new StringBuffer();
             String line;
-
             while((line=br.readLine())!=null)  
             { 
             	Product c= new Product(line);
             	productList.add(c);
             }  
-            fr.close();  
-            System.out.println("Products in the File ");  
+            fr.close();    
             System.out.println(sb.toString()); 
             return productList;
 
@@ -110,7 +108,4 @@ public class ProductController {
             }
     		return null;
 	}
-	
-
-
 }

@@ -1,19 +1,16 @@
 package ptbs;
 public interface ProductMenu {
 
-	public void showMenu();
+	public abstract void showMenu();
 
-	public void showAddButton();
+	public abstract void showAddButton();
 
-	public void showViewButton();
+	public abstract void showViewButton();
 
-	public void showRadioButton();
+	public abstract void showRadioButton();
 
-	public void showLabels();
+	public abstract void showLabels();
 
-	/**
-	 *  
-	 */
-	public void showComboxes();
+	public abstract void showComboxes();
 
 }

@@ -11,16 +11,16 @@ public abstract class Person {
 		
 	public abstract void showMenu();
 	
-	public abstract void createProductMenu(int productTypeArg);
+	public abstract void createProductMenu(int productType);
 	
 	public void showAddButton() {
 		Facade f = new Facade();
-		f.addTrading(TradingController.getDummyTrading(), Facade.userType);
+		f.addTrading(TradingController.getTrading(), Facade.userType);
 	}
 	
 	public void showViewButton() {
 		Facade f = new Facade();
-		f.viewTrading(TradingController.getDummyTrading(), Facade.userType);
+		f.viewTrading(TradingController.getTrading(), Facade.userType);
 	}
 	
 	public void showRadios() {
@@ -87,5 +87,5 @@ public abstract class Person {
 	public void addProduct(Product product) {
 		System.out.println(product+" Added");
 	}
-
+    
 }

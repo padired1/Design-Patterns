@@ -1,4 +1,0 @@
-CREATE table Buyers(
-    Username varchar(15),
-    Password int
-);

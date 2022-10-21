@@ -2,7 +2,7 @@ package ptbs;
 import java.util.List;
 public class ProductIterator extends ListIterator {
 
-	private int curNum;
+	private int curNum=-1;
 	private List<Product> productList;
 	
 	// Iterator design pattern 
@@ -25,7 +25,7 @@ public class ProductIterator extends ListIterator {
 	{
 		if ( hasNext() == true) 
 		{
-			curNum += 1; 
+			curNum ++; 
 			return productList.get(curNum);
 		}
 		else {
@@ -34,14 +34,14 @@ public class ProductIterator extends ListIterator {
 	}
 
 	@Override
-	public void Remove()
+	public void remove()
 	{
 		productList.remove(curNum);
 		
 	}
 
 	@Override
-	public void MoveToHead() {
+	public void moveToHead() {
 		curNum = 0; 
 		
 	}

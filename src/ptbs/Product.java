@@ -17,11 +17,7 @@ public class Product {
 	public String getName() {
 		return name;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
+
 	public List<Trading> getTradings(){
 		return tradings;
 	}
@@ -38,5 +34,6 @@ public class Product {
 	public String toString() {
 		return name;
 	}
+	
 
 }

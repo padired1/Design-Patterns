@@ -2,7 +2,7 @@ package ptbs;
 import java.util.List;
 public class OfferingIterator extends ListIterator {
 
-	int currentNum;
+	int count=0;
 	private List<Offering> offeringList;
 	
 	public OfferingIterator(List<Offering> offList)
@@ -15,7 +15,7 @@ public class OfferingIterator extends ListIterator {
 	
 	@Override
 	public boolean hasNext() {
-		if (currentNum >= offeringList.size()-1) {
+		if (count>= offeringList.size()-1) {
 			return false; 
 		}
 		else {
@@ -26,8 +26,8 @@ public class OfferingIterator extends ListIterator {
 	@Override
 	public Object next() {
 		if ( hasNext() == true) {
-			currentNum += 1; 
-			return offeringList.get(currentNum);
+			count += 1; 
+			return offeringList.get(count);
 		}
 		else {
 			return null;
@@ -35,16 +35,16 @@ public class OfferingIterator extends ListIterator {
 	}
 
 	@Override
-	public void Remove() 
+	public void remove() 
 	{
-		offeringList.remove(currentNum);
+		offeringList.remove(count);
 		
 	}
 
 	@Override
-	public void MoveToHead() 
+	public void moveToHead() 
 	{
-		currentNum = 0; 
+		count = 0; 
 		
 	}
 
